@@ -34,8 +34,20 @@ def has_seen_rooms(room_id, seen_rooms):
     for room in rooms:
         if room not in seen_rooms:
             return False
-    return True   
+    return True 
 
+def get_unseen_room(room_id, seen_rooms):
+    # Get the connected rooms rom this room
+    connected_rooms = room_graph[room_id][1].items()
+
+    # Loop through the connected rooms
+    for direction, room in connected_rooms:
+        # Check if the room has not been seen before
+        if room not in seen_rooms:
+            # Add the direction to traversal_path
+            traversal_path.append(direction)
+            seen_rooms.add(room)
+            return room
 
 # Fill this out with directions to walk
 # traversal_path = ['n', 'n']
