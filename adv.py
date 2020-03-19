@@ -26,6 +26,17 @@ world.print_rooms()
 
 player = Player(world.starting_room)
 
+def has_seen_rooms(room_id, seen_rooms):
+    # Get the connected rooms
+    rooms = room_graph[room_id][1].values()
+
+    # Check if any of the rooms has not been seen
+    for room in rooms:
+        if room not in seen_rooms:
+            return False
+    return True   
+
+
 # Fill this out with directions to walk
 # traversal_path = ['n', 'n']
 traversal_path = []
